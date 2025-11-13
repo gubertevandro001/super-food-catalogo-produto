@@ -1,0 +1,27 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: super-food-catalogo-produto
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;databaseName=DB_CATALOGO_PRODUTO;encrypt=false
+    username: sa
+    password: SuperFood#!
+  jpa:
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServerDialect
+        globally_quoted_identifiers: true
+  flyway:
+    enabled: true
+    url: jdbc:sqlserver://localhost:1433;databaseName=DB_CATALOGO_PRODUTO;encrypt=false
+    user: sa
+    password: SuperFood#!
+    locations: classpath:db/migration

@@ -1,0 +1,32 @@
+version: '3.9'
+
+services:
+  sqlserver-catalogo-produto:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver-catalogo-produto
+    hostname: sqlserver
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=SuperFood#!
+      - MSSQL_PID=Developer
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    networks:
+      - superfood-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P SuperFood#! -Q 'SELECT 1'"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+volumes:
+  sqlserver_data:
+    driver: local
+
+networks:
+  superfood-network:
+    driver: bridge
