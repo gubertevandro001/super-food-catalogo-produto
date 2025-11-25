@@ -22,7 +22,7 @@ public class CategoriaService {
     }
 
     public void excluir(String id) {
-        var categoriaExistente = buscarPorId(id);
-        categoriaRepository.delete(categoriaExistente);
+        buscarPorId(id);
+        categoriaRepository.deleteById(id);
     }
 }
