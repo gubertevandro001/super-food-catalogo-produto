@@ -11,7 +11,7 @@ public class CategoriaService {
 
     private final CategoriaRepository categoriaRepository;
 
-    public Categoria salvar(Categoria categoria){
+    public Categoria salvar(Categoria categoria) {
         return categoriaRepository.save(categoria);
     }
 
