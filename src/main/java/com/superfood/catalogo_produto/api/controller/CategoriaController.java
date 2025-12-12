@@ -1,18 +1,13 @@
 package com.superfood.catalogo_produto.api.controller;
 
 import com.superfood.catalogo_produto.api.mapper.CategoriaMapper;
+import com.superfood.catalogo_produto.api.model.AtualizarCategoriaRequest;
+import com.superfood.catalogo_produto.api.model.AtualizarCategoriaResponse;
 import com.superfood.catalogo_produto.api.model.CadastrarCategoriaRequest;
 import com.superfood.catalogo_produto.api.model.CadastrarCategoriaResponse;
-import com.superfood.catalogo_produto.domain.model.Categoria;
 import com.superfood.catalogo_produto.domain.service.CategoriaService;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.UUID;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/categorias")
@@ -23,7 +18,19 @@ public class CategoriaController {
     private final CategoriaMapper categoriaMapper;
 
     @PostMapping
-    public CadastrarCategoriaResponse cadastrar(@RequestBody CadastrarCategoriaRequest categoria) {
-        return categoriaMapper.toResponse(categoriaService.salvar(categoriaMapper.toDomainModel(categoria)));
+    public CadastrarCategoriaResponse cadastrar(@RequestBody CadastrarCategoriaRequest request) {
+        var categoria = categoriaMapper.toDomainModel(request);
+
+        categoriaService.salvar(categoria);
+        return categoriaMapper.cadastroResponse(categoria);
+    }
+
+    @PutMapping("/{categoriaId}")
+    public AtualizarCategoriaResponse atualizar(@PathVariable String categoriaId, @RequestBody AtualizarCategoriaRequest request) {
+        var categoriaExistente = categoriaService.buscarPorId(categoriaId);
+
+        categoriaMapper.copyToDomainModel(request, categoriaExistente);
+        categoriaService.salvar(categoriaExistente);
+        return categoriaMapper.atualizacaoResponse(categoriaExistente);
     }
 }
