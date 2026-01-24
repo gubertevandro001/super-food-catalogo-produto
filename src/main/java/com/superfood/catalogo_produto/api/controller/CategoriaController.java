@@ -6,16 +6,19 @@ import com.superfood.catalogo_produto.api.model.AtualizarCategoriaResponse;
 import com.superfood.catalogo_produto.api.model.CadastrarCategoriaRequest;
 import com.superfood.catalogo_produto.api.model.CadastrarCategoriaResponse;
 import com.superfood.catalogo_produto.domain.service.CategoriaService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/categorias")
-@RequiredArgsConstructor
 public class CategoriaController {
 
     private final CategoriaService categoriaService;
     private final CategoriaMapper categoriaMapper;
+
+    public CategoriaController(CategoriaService categoriaService, CategoriaMapper categoriaMapper) {
+        this.categoriaService = categoriaService;
+        this.categoriaMapper = categoriaMapper;
+    }
 
     @PostMapping
     public CadastrarCategoriaResponse cadastrar(@RequestBody CadastrarCategoriaRequest request) {

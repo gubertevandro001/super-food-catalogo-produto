@@ -2,14 +2,17 @@ package com.superfood.catalogo_produto.domain.service;
 
 import com.superfood.catalogo_produto.domain.model.Categoria;
 import com.superfood.catalogo_produto.domain.repository.CategoriaRepository;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class CategoriaService {
 
     private final CategoriaRepository categoriaRepository;
+
+    public CategoriaService(CategoriaRepository categoriaRepository) {
+        this.categoriaRepository = categoriaRepository;
+    }
 
     public Categoria salvar(Categoria categoria) {
         return categoriaRepository.save(categoria);

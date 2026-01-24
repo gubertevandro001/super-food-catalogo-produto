@@ -5,17 +5,19 @@ import com.superfood.catalogo_produto.api.model.AtualizarCategoriaResponse;
 import com.superfood.catalogo_produto.api.model.CadastrarCategoriaRequest;
 import com.superfood.catalogo_produto.api.model.CadastrarCategoriaResponse;
 import com.superfood.catalogo_produto.domain.model.Categoria;
-import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
 @Component
-@RequiredArgsConstructor
 public class CategoriaMapper {
 
     private final ModelMapper modelMapper;
+
+    public CategoriaMapper(ModelMapper modelMapper) {
+        this.modelMapper = modelMapper;
+    }
 
     public Categoria toDomainModel(CadastrarCategoriaRequest request) {
         var categoria = new Categoria();
