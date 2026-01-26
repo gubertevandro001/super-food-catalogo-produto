@@ -6,6 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Table(name = "CATEGORIA")
@@ -21,12 +22,22 @@ public class Categoria {
     @Column(name = "DESCRICAO")
     private String descricao;
 
-    public Categoria() {}
+    protected Categoria() {}
 
-    public Categoria(String id, String nome, String descricao) {
-        this.id = id;
+    private Categoria(String nome, String descricao) {
+        this.id = UUID.randomUUID().toString();
         this.nome = nome;
         this.descricao = descricao;
+    }
+
+    public Categoria atualizar(String nome, String descricao) {
+        this.nome = nome;
+        this.descricao = descricao;
+        return this;
+    }
+
+    public static Categoria novaCategoria(String nome, String descricao) {
+        return new Categoria(nome, descricao);
     }
 
     public String getId() {

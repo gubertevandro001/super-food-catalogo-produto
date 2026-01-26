@@ -1,32 +1,18 @@
 package com.superfood.catalogo_produto.api.model;
 
-public class CadastrarCategoriaResponse {
+import com.superfood.catalogo_produto.domain.model.Categoria;
 
-    private String id;
-    private String nome;
-    private String descricao;
+public record CadastrarCategoriaResponse(
+        String id,
+        String nome,
+        String descricao
+) {
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public static CadastrarCategoriaResponse aPartirDe(Categoria categoria) {
+        return  new CadastrarCategoriaResponse(
+                categoria.getId(),
+                categoria.getNome(),
+                categoria.getDescricao()
+        );
     }
 }

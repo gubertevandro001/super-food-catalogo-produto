@@ -1,5 +1,7 @@
 package com.superfood.catalogo_produto.domain.service;
 
+import com.superfood.catalogo_produto.api.model.AtualizarCategoriaRequest;
+import com.superfood.catalogo_produto.api.model.CadastrarCategoriaRequest;
 import com.superfood.catalogo_produto.domain.model.Categoria;
 import com.superfood.catalogo_produto.domain.repository.CategoriaRepository;
 
@@ -14,7 +16,14 @@ public class CategoriaService {
         this.categoriaRepository = categoriaRepository;
     }
 
-    public Categoria salvar(Categoria categoria) {
+    public Categoria cadastrar(CadastrarCategoriaRequest request) {
+        Categoria categoria = Categoria.novaCategoria(request.nome(), request.descricao());
+        return categoriaRepository.save(categoria);
+    }
+
+    public Categoria atualizar(String categoriaId, AtualizarCategoriaRequest request) {
+        Categoria categoria = buscarPorId(categoriaId);
+        categoria.atualizar(request.nome(), request.descricao());
         return categoriaRepository.save(categoria);
     }
 
@@ -23,6 +32,7 @@ public class CategoriaService {
                 () -> new RuntimeException("Categoria inexistente")
         );
     }
+
 
     public void excluir(String id) {
         buscarPorId(id);
