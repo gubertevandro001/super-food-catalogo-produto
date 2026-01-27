@@ -7,6 +7,8 @@ import com.superfood.catalogo_produto.domain.repository.CategoriaRepository;
 
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CategoriaService {
 
@@ -14,6 +16,10 @@ public class CategoriaService {
 
     public CategoriaService(CategoriaRepository categoriaRepository) {
         this.categoriaRepository = categoriaRepository;
+    }
+
+    public List<Categoria> buscarTodas() {
+        return categoriaRepository.findAll();
     }
 
     public Categoria cadastrar(CadastrarCategoriaRequest request) {
