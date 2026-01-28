@@ -36,7 +36,7 @@ public class Produto {
             inverseJoinColumns = @JoinColumn(name = "CATEGORIA_ID"))
     private List<Categoria> categorias = new ArrayList<>();
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "MARCA_ID")
     private Marca marca;
 
