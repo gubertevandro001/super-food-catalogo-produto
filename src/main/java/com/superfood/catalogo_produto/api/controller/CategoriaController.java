@@ -34,8 +34,7 @@ public class CategoriaController {
     }
 
     @PutMapping("/{categoriaId}")
-    public CategoriaResponse atualizar(@PathVariable String categoriaId,
-                                                @RequestBody AtualizarCategoriaRequest request) {
+    public CategoriaResponse atualizar(@PathVariable String categoriaId, @RequestBody AtualizarCategoriaRequest request) {
         return CategoriaResponse.aPartirDe(categoriaService.atualizar(categoriaId, request));
     }
 }

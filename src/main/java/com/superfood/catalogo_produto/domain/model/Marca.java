@@ -6,6 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Table(name = "MARCA")
@@ -21,36 +22,34 @@ public class Marca {
     @Column(name = "DESCRICAO")
     private String descricao;
 
-    public Marca() {}
+    protected Marca() {}
 
-    public Marca(String id, String nome, String descricao) {
-        this.id = id;
+    private Marca(String nome, String descricao) {
+        this.id = UUID.randomUUID().toString();
         this.nome = nome;
         this.descricao = descricao;
+    }
+
+    public static Marca novaMarca(String nome, String descricao) {
+        return new Marca(nome, descricao);
+    }
+
+    public Marca atualizar(String nome, String descricao) {
+        this.nome = nome;
+        this.descricao = descricao;
+        return this;
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public String getDescricao() {
         return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
 
     @Override

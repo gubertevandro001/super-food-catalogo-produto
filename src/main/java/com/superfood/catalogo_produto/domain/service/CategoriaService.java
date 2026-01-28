@@ -18,6 +18,10 @@ public class CategoriaService {
         this.categoriaRepository = categoriaRepository;
     }
 
+    public Categoria buscarPorId(String id) {
+        return categoriaRepository.findById(id).orElseThrow(() -> new RuntimeException("Categoria inexistente"));
+    }
+
     public List<Categoria> buscarTodas() {
         return categoriaRepository.findAll();
     }
@@ -31,17 +35,5 @@ public class CategoriaService {
         Categoria categoria = buscarPorId(categoriaId);
         categoria.atualizar(request.nome(), request.descricao());
         return categoriaRepository.save(categoria);
-    }
-
-    public Categoria buscarPorId(String id) {
-        return categoriaRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("Categoria inexistente")
-        );
-    }
-
-
-    public void excluir(String id) {
-        buscarPorId(id);
-        categoriaRepository.deleteById(id);
     }
 }
