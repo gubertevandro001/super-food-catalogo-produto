@@ -2,7 +2,9 @@ package com.superfood.catalogo_produto.domain.util;
 
 import com.aventrix.jnanoid.jnanoid.NanoIdUtils;
 
-public class SkuGenerator {
+public final class SkuGenerator {
+
+    private SkuGenerator() {}
 
     private static final char[] ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
     private static final int SIZE = 8;

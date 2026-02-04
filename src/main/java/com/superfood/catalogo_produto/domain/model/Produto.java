@@ -1,5 +1,6 @@
 package com.superfood.catalogo_produto.domain.model;
 
+import com.superfood.catalogo_produto.domain.util.IdGenerator;
 import com.superfood.catalogo_produto.domain.util.SkuGenerator;
 import jakarta.persistence.*;
 
@@ -63,7 +64,7 @@ public class Produto {
     private Produto(String nome, String descricao, UnidadeComercial unidadeComercial,
                     Marca marca, Boolean usaControleDeLote, String codigoDeBarras,
                     BigDecimal precoVenda) {
-        this.id = UUID.randomUUID().toString();
+        this.id = IdGenerator.generateId();
         this.nome = nome;
         this.codigoSku = SkuGenerator.gerarSku();
         this.descricao = descricao;

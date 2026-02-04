@@ -1,5 +1,6 @@
 package com.superfood.catalogo_produto.domain.model;
 
+import com.superfood.catalogo_produto.domain.util.IdGenerator;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -25,7 +26,7 @@ public class Marca {
     protected Marca() {}
 
     private Marca(String nome, String descricao) {
-        this.id = UUID.randomUUID().toString();
+        this.id = IdGenerator.generateId();
         this.nome = nome;
         this.descricao = descricao;
     }
