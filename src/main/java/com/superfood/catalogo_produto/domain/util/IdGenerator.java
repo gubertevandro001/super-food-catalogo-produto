@@ -10,3 +10,4 @@ public final class IdGenerator {
         return UUID.randomUUID().toString().replace("-", "");
     }
 }
+
