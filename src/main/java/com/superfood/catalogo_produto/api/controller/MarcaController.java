@@ -1,7 +1,8 @@
 package com.superfood.catalogo_produto.api.controller;
 
-import com.superfood.catalogo_produto.api.model.*;
-import com.superfood.catalogo_produto.domain.service.CategoriaService;
+import com.superfood.catalogo_produto.api.model.AtualizarMarcaRequest;
+import com.superfood.catalogo_produto.api.model.CadastrarMarcaRequest;
+import com.superfood.catalogo_produto.api.model.MarcaResponse;
 import com.superfood.catalogo_produto.domain.service.MarcaService;
 import org.springframework.web.bind.annotation.*;
 

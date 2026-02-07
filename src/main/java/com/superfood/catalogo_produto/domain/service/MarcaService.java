@@ -1,9 +1,7 @@
 package com.superfood.catalogo_produto.domain.service;
 
-import com.superfood.catalogo_produto.api.model.AtualizarCategoriaRequest;
 import com.superfood.catalogo_produto.api.model.AtualizarMarcaRequest;
 import com.superfood.catalogo_produto.api.model.CadastrarMarcaRequest;
-import com.superfood.catalogo_produto.domain.model.Categoria;
 import com.superfood.catalogo_produto.domain.model.Marca;
 import com.superfood.catalogo_produto.domain.repository.MarcaRepository;
 import org.springframework.stereotype.Service;

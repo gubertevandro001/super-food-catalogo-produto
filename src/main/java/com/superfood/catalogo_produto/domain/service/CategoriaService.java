@@ -4,7 +4,6 @@ import com.superfood.catalogo_produto.api.model.AtualizarCategoriaRequest;
 import com.superfood.catalogo_produto.api.model.CadastrarCategoriaRequest;
 import com.superfood.catalogo_produto.domain.model.Categoria;
 import com.superfood.catalogo_produto.domain.repository.CategoriaRepository;
-
 import org.springframework.stereotype.Service;
 
 import java.util.List;
